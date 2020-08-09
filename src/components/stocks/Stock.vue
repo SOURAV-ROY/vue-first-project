@@ -1,19 +1,45 @@
 <template>
-    <div class="col-md-12 text-center pb-3 pt-2">
-      <div class="card bg-light">
-        <div class="card-body">
-          <h4 class="card-title">Name</h4>
-          <small class="text-warning">Price: PRICE</small>
-          <input type="number" class="form-control border border-danger">
-          <a href="#" class="btn btn-primary">Buy Item</a>
-        </div>
+  <div class="col-md-12 text-center pb-3 pt-2">
+    <div class="card bg-light">
+      <div class="card-body">
+        <h4 class="card-title">{{ stock.name }}</h4>
+        <small class="text-primary">Price: {{ stock.price }}</small>
+        <input
+          type="number"
+          class="form-control border border-danger"
+          placeholder="Quantity"
+          v-model="quantity"
+        >
+        <button
+          class="btn btn-success"
+          @click="buyStock"
+          :disabled="quantity <= 0 || !Number.isInteger(+quantity)"
+        >Buy Item
+        </button>
       </div>
     </div>
+  </div>
 </template>
 
 <script>
 export default {
-  name: "Stock"
+  props: ['stock'],
+  data() {
+    return {
+      quantity: 0
+    }
+  },
+  methods: {
+    buyStock() {
+      const order = {
+        stockId: this.stock.id,
+        stockPrice: this.stock.price,
+        quantity: this.quantity,
+      };
+      console.log(order);
+      this.quantity = 0;
+    }
+  }
 }
 </script>
 
