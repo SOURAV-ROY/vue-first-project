@@ -1,13 +1,26 @@
 <template>
   <div>
-    <h1>Stocks Component</h1>
+    <app-stock v-for="stock in stocks"></app-stock>
   </div>
 </template>
 
 <script>
-    export default {
-        name: "Stocks"
+  import Stock from "./Stock";
+  export default {
+    data() {
+      return {
+        stocks: [
+          {id: 1, name: "BMW", price: 110},
+          {id: 2, name: "GOOGLE", price: 200},
+          {id: 3, name: "APPLE", price: 330},
+          {id: 4, name: "TWITTER", price: 450},
+        ]
+      }
+    },
+    components:{
+      appStock: Stock
     }
+  }
 </script>
 
 <style scoped>
