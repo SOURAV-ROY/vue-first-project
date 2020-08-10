@@ -1,21 +1,28 @@
 <template>
-  <div class="col-md-12 text-center pb-3 pt-2">
+  <div class="col-md-6 text-center pb-3 pt-2">
     <div class="card bg-light">
+      <div class="card-header bg-info">
+        {{ stock.name }}
+      </div>
       <div class="card-body">
-        <h4 class="card-title">{{ stock.name }}</h4>
-        <small class="text-primary">Price: {{ stock.price }}</small>
-        <input
-          type="number"
-          class="form-control border border-danger"
-          placeholder="Quantity"
-          v-model="quantity"
-        >
-        <button
-          class="btn btn-success"
-          @click="buyStock"
-          :disabled="quantity <= 0 || !Number.isInteger(+quantity)"
-        >Buy Item
-        </button>
+        <p class="text-danger "><b>Price: {{ stock.price }} $</b></p>
+        <label>
+          <input
+            type="number"
+            class="form-control border border-danger"
+            placeholder="Quantity"
+            v-model="quantity"
+          >
+        </label>
+        <div>
+          <button
+            class="btn btn-success"
+            @click="buyStock"
+            :disabled="quantity <= 0 || !Number.isInteger(+quantity)"
+          >Buy Item
+          </button>
+        </div>
+
       </div>
     </div>
   </div>
