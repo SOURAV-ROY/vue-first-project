@@ -10,13 +10,12 @@
 import Header from "./components/Header";
 
 export default {
-  data() {
-    return {
-      name: 'Sourav'
-    }
-  },
   components: {
     appHeader: Header
+  },
+
+  created() {
+    this.$store.dispatch('initStocks');
   }
 }
 </script>

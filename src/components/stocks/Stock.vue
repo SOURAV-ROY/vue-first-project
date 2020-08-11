@@ -2,7 +2,7 @@
   <div class="col-md-6 text-center pb-3 pt-2">
     <div class="card bg-light">
       <div class="card-header bg-info">
-        {{ stock.name }}
+        <b>{{ stock.name }}</b>
       </div>
       <div class="card-body">
         <p class="text-danger "><b>Price: {{ stock.price }} $</b></p>
