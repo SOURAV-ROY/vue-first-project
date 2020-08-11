@@ -1,11 +1,11 @@
 <template>
-  <div class="col-md-6 text-center pb-3 pt-2">
+  <div class="col-md-4 text-center pb-3">
     <div class="card bg-light">
       <div class="card-header bg-info">
         <b>{{ stock.name }}</b>
       </div>
       <div class="card-body">
-        <p class="text-danger "><b>Price: {{ stock.price }} $</b></p>
+        <p class="text-danger "><b>Price: {{ stock.price }}$</b></p>
         <label>
           <input
             type="number"
@@ -44,6 +44,7 @@ export default {
         quantity: this.quantity,
       };
       console.log(order);
+      this.$store.dispatch('buyStock', order)
       this.quantity = 0;
     }
   }
