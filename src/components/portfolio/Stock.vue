@@ -1,7 +1,7 @@
 <template>
   <div class="col-md-4 text-center pb-3">
     <div class="card bg-light">
-      <div class="card-header bg-info">
+      <div class="card-header bg-success">
         <b>{{ stock.name }}</b>
       </div>
       <div class="card-body">
@@ -16,7 +16,7 @@
         </label>
         <div>
           <button
-            class="btn btn-success"
+            class="btn btn-primary"
             @click="sellStock"
             :disabled="quantity <= 0 || !Number.isInteger(+quantity)"
           >Sell
@@ -39,15 +39,19 @@ export default {
     }
   },
   methods: {
-    ...mapActions([
-      'sellStock'
-    ]),
+
+    ...mapActions({
+      placeSellOrder: 'sellStock'
+    }),
+
     sellStock() {
       const order = {
         stockId: this.stock.id,
         stockPrice: this.stock.price,
         quantity: this.quantity
       };
+      this.placeSellOrder(order);
+      this.quantity = 0;
       console.log(order)
     }
   }
