@@ -24,16 +24,19 @@
             <a class="nav-link" @click="endDay">End Day</a>
           </router-link>
         </li>
-        <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" id="navbarDropdown" role="button" data-toggle="dropdown"
-             aria-haspopup="true" aria-expanded="false">
-            Save & Load
-          </a>
-          <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+        <div
+          class="dropdown"
+          :class="{open: isDropDownOpen}"
+          @click="isDropDownOpen != isDropDownOpen"
+        >
+          <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            Save & Load Data
+          </button>
+          <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
             <a class="dropdown-item" href="#">Save Data</a>
             <a class="dropdown-item" href="#">Load Data</a>
           </div>
-        </li>
+        </div>
       </ul>
     </div>
   </nav>
@@ -43,6 +46,11 @@
 import {mapActions} from 'vuex';
 
 export default {
+  data(){
+    return{
+      isDropDownOpen: false
+    }
+  },
   computed: {
     funds() {
       return this.$store.getters.funds;
