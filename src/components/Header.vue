@@ -17,7 +17,7 @@
           </router-link>
         </li>
       </ul>
-      <strong class="badge badge-success">Funds : {{ funds }}$</strong>
+      <strong class="badge badge-success">Funds : {{ funds | currency }}</strong>
       <ul class="nav justify-content-end">
         <li class="nav-item active">
           <router-link to="/endDay" activeClass="active">
