@@ -29,11 +29,12 @@
           :class="{open: isDropDownOpen}"
           @click="isDropDownOpen != isDropDownOpen"
         >
-          <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown"
+                  aria-haspopup="true" aria-expanded="false">
             Save & Load Data
           </button>
           <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-            <a class="dropdown-item" href="#">Save Data</a>
+            <a class="dropdown-item" href="#" @click="saveData">Save Data</a>
             <a class="dropdown-item" href="#">Load Data</a>
           </div>
         </div>
@@ -46,8 +47,8 @@
 import {mapActions} from 'vuex';
 
 export default {
-  data(){
-    return{
+  data() {
+    return {
       isDropDownOpen: false
     }
   },
@@ -62,6 +63,14 @@ export default {
     ]),
     endDay() {
       this.randomizeStocks();
+    },
+    saveData() {
+      const data = {
+        funds: this.$store.getters.funds,
+        stockPortfolio: this.$store.getters.stockPortfolio,
+        stocks: this.$store.getters.stocks
+      };
+      this.$http.put('data.json', data);
     }
   }
 }
