@@ -1,13 +1,7 @@
-import dataStocks from "../../data/dataStocks";
+import stocks from '../../data/dataStocks';
 
 const state = {
   stocks: []
-};
-
-const getters = {
-  stocks: state => {
-    return state.stocks;
-  }
 };
 
 const mutations = {
@@ -17,7 +11,7 @@ const mutations = {
   'RND_STOCKS'(state) {
     state.stocks.forEach(stock => {
       stock.price = Math.round(stock.price * (1 + Math.random() - 0.5));
-    })
+    });
   }
 };
 
@@ -26,16 +20,22 @@ const actions = {
     commit('BUY_STOCK', order);
   },
   initStocks: ({commit}) => {
-    commit('SET_STOCKS', dataStocks);
+    commit('SET_STOCKS', stocks);
   },
   randomizeStocks: ({commit}) => {
     commit('RND_STOCKS');
   }
 };
 
+const getters = {
+  stocks: state => {
+    return state.stocks;
+  }
+};
+
 export default {
   state,
-  getters,
   mutations,
-  actions
-}
+  actions,
+  getters
+};
